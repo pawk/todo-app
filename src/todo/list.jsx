@@ -13,7 +13,7 @@ export default class TodoList extends React.Component {
     ])
   }
 
-  state = []
+  state = {}
 
   componentWillMount() {
     this.setState({ items: this.props.children });
@@ -23,7 +23,10 @@ export default class TodoList extends React.Component {
     return (
       <div className="todo__list">
         {this.state.items.map((item, key) => React.cloneElement(item, {
-          key
+          key,
+          order: key,
+          handleSelection: () => console.log('handling selection!'),
+          handleDelete: () => console.log('handling delete!')
         }))}
         <TodoAdd></TodoAdd>
       </div>
