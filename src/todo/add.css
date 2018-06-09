@@ -1,0 +1,18 @@
+.todo__add {
+  align-content: center;
+  display: flex;
+  flex-direction: row;
+  height: 2em;
+  justify-content: space-between;
+  margin-top: 20px;  
+  width: 100%;
+}
+
+.todo__add-input {
+  width: calc(100% - 5em);
+}
+
+.todo__add-btn {
+  font-size: 0.85em;
+  width: 3em;
+}

@@ -7,7 +7,3 @@
 .todo__item-delete-btn {
   font-size: 0.7em;
 }
-
-.todo__item-checkobox {
-  transform: scale(5);
-}

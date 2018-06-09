@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { TodoItem, TodoAdd } from './index';
+
 import './list.css';
 
 export default class TodoList extends React.Component {
@@ -23,7 +25,7 @@ export default class TodoList extends React.Component {
         {this.state.items.map((item, key) => React.cloneElement(item, {
           key
         }))}
-        <button className="todo__add-btn">+ Add</button>
+        <TodoAdd></TodoAdd>
       </div>
     )
   }
