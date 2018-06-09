@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import TodoList from './todo-list';
+import TodoList from './todo';
+import { TodoItem } from './todo';
 
-class App extends Component {
+class App extends React.Component {
   render() {
     return (
       <div className="App">
@@ -14,8 +15,8 @@ class App extends Component {
         </header>
 
         <TodoList>
-          <div>jeden</div>
-          <div>dwa</div>
+          <TodoItem>jeden</TodoItem>
+          <TodoItem>dwa</TodoItem>
         </TodoList>
       </div>
     );
