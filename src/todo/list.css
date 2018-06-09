@@ -6,3 +6,10 @@
   transform: translate(-50%);
   width: 500px;
 }
+
+.todo__add-btn {
+  float: right;
+  font-size: 0.85em;
+  margin-top: 20px;
+  width: 100%;
+}

@@ -6,9 +6,9 @@ export class TodoItem extends React.Component {
   render() {
     return (
       <div className="todo__item">
-        <div><input type="checkbox"/></div>
+        <div><input type="checkbox" /></div>
         <div>{this.props.children}</div>
-        <div><input type="button" value="delete"/></div>
+        <div><button className="todo__item-delete-btn">- Delete</button></div>
       </div>
     );
   }

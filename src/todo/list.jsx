@@ -23,6 +23,7 @@ export default class TodoList extends React.Component {
         {this.state.items.map((item, key) => React.cloneElement(item, {
           key
         }))}
+        <button className="todo__add-btn">+ Add</button>
       </div>
     )
   }
