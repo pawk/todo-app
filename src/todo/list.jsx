@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './list.css';
+
 export default class TodoList extends React.Component {
   static propTypes = {
     children: PropTypes.oneOfType([
@@ -9,14 +11,19 @@ export default class TodoList extends React.Component {
     ])
   }
 
+  state = []
+
   componentWillMount() {
-    this.items = this.props.children;
+    this.setState({ items: this.props.children });
   }
   
   render() {
-    return this.items.map((item, key) => React.cloneElement(item, {
-      key
-    }))
-
+    return (
+      <div className="todo__list">
+        {this.state.items.map((item, key) => React.cloneElement(item, {
+          key
+        }))}
+      </div>
+    )
   }
 }

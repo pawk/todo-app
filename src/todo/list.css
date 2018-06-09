@@ -1,0 +1,8 @@
+.todo__list {
+  left: 50%;  
+  padding: 2em;
+  position: absolute;
+  top: 20vh;
+  transform: translate(-50%);
+  width: 500px;
+}
