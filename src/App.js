@@ -1,12 +1,12 @@
 import React from 'react';
-import './App.css';
+import './app.css';
 
 import TodoList, { TodoItem } from './todo';
 
 class App extends React.Component {
   render() {
     return (
-      <div className="App">
+      <div className="todo-app">
         <TodoList>
           <TodoItem done>jeden</TodoItem>
           <TodoItem>siedem</TodoItem>

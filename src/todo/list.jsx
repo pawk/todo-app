@@ -56,6 +56,7 @@ export default class TodoList extends React.Component {
   render() {
     return (
       <div className="todo__list">
+        <TodoAdd onAdd={this.addItem}></TodoAdd>
         {this.state.items.map((item, key) =>
           <TodoItem
             key={key}
@@ -64,7 +65,6 @@ export default class TodoList extends React.Component {
             onDelete={this.removeItem(item)}
           >{item.content}</TodoItem>
         )}
-        <TodoAdd onAdd={this.addItem}></TodoAdd>
       </div>
     )
   }

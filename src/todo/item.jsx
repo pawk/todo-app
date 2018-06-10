@@ -10,28 +10,29 @@ function slugify(str) {
 export const TodoItem = (props) => {
   const { item, onSelect, onDelete, children: content } = props;
   const { done } = item;
-  const className = done ? 'todo__item--done' : 'todo__item';
-  const id = "item".concat(slugify(content));
+  const className = done ? 'todo__item todo__item--done' : 'todo__item';
+  const id = "item-".concat(slugify(content));
 
   return (
-    <section className={className}>
+    <label htmlFor={id} className={className}>
       <div>
+
+      </div>
+      <div className="todo__item-content">
         <input
           type="checkbox"
           id={id}
           onChange={onSelect}
-          checked={done ? true : false} />
-      </div>
-      <div className="todo__item-content">
-        <label htmlFor={id}>{content}</label>
+          checked={done ? true : false} />        
+        {content}
       </div>
       <div>
         <button
           className="todo__item-delete-btn"
           onClick={onDelete}
-          > - Delete</button>
+          >Delete</button>
       </div>
-    </section>
+    </label>
   );
 };
 
