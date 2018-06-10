@@ -1,9 +1,7 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-import TodoList from './todo';
-import { TodoItem } from './todo';
+import TodoList, { TodoItem } from './todo';
 
 class App extends React.Component {
   render() {

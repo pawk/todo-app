@@ -10,7 +10,7 @@ function slugify(str) {
 export const TodoItem = (props) => {
   const { item, onSelect, onDelete, children: content } = props;
   const { done } = item;
-  const className = done && 'todo__item--done' || 'todo__item';
+  const className = done ? 'todo__item--done' : 'todo__item';
   const id = "item".concat(slugify(content));
 
   return (
