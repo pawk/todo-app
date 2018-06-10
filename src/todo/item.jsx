@@ -3,23 +3,27 @@ import PropTypes from 'prop-types';
 
 import './item.css';
 
+function slugify(str) {
+  return str.replace(/[^A-Za-z0-9]/g, '')
+}
+
 export const TodoItem = (props) => {
-  const { item, onSelect, onDelete, children } = props;
+  const { item, onSelect, onDelete, children: content } = props;
   const { done } = item;
   const className = done && 'todo__item--done' || 'todo__item';
-
+  const id = "item".concat(slugify(content));
 
   return (
     <section className={className}>
       <div>
         <input
           type="checkbox"
-          id="item{order}"
+          id={id}
           onChange={onSelect}
           checked={done} />
       </div>
       <div className="todo__item-content">
-        <label htmlFor="item{order}">{children}</label>
+        <label htmlFor={id}>{content}</label>
       </div>
       <div>
         <button
@@ -35,11 +39,13 @@ TodoItem.propTypes = {
   done: PropTypes.bool,
   onSelect: PropTypes.func,
   onDelete: PropTypes.func,
-  children: PropTypes.string.isRequired
+  children: PropTypes.string.isRequired,
+  key: PropTypes.number
 }
 
 TodoItem.defaultProps = {
   done: false,
   onSelect: () => {},
-  onDelete: () => {}
+  onDelete: () => {},
+  key: 0
 }
