@@ -1,8 +1,8 @@
 export default class TodoService {
   items = [];
 
-  constructor(items) {
-    this.items = items || [];
+  constructor() {
+    this.load();
   }
 
   getAll() {
@@ -11,11 +11,13 @@ export default class TodoService {
 
   add(item) {
     this.items.push(item);
+    this.save();
     return this;
   }
 
   addMany(items) {
-    this.items = [...items, ...this.items];
+    this.items = [...items.filter(this.unique), ...this.items];
+    this.save();
     return this;
   }
 
@@ -24,12 +26,27 @@ export default class TodoService {
     if (pos !== -1) {
       this.items.splice(pos, 1);
     }
+    this.save();
     return this;
   }
 
   toggle(item) {
-    let found = this.items.find(el => el === item);
-    found.done = !found.done;  
+    const found = this.items.find(el => el === item);
+    found.done = !found.done;
+    this.save();
     return this;
   }
+
+  load() {
+    const stored = localStorage.getItem('items');
+    if (stored) {
+      this.items = [...this.items, ...JSON.parse(stored)];
+    }
+  }
+
+  save() {
+    localStorage.setItem('items', JSON.stringify(this.items));
+  }
+
+  unique = (item) => !this.items.find(el => el.content !== item.content);
 }

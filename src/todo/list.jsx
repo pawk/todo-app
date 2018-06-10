@@ -17,20 +17,7 @@ export default class TodoList extends React.Component {
   constructor() {
     super();
 
-    this.service = new Service([
-      {
-        content: 'some list item',
-        done: false
-      },
-      {
-        content: 'another list item',
-        done: false
-      },
-      {
-        content: 'third item',
-        done: false
-      },
-    ]);
+    this.service = new Service();
   }
 
   componentWillMount() {
