@@ -11,7 +11,6 @@ export default class TodoService {
   }
 
   add(...items) {
-    console.log(items.filter(this.unique))
     this.items = [...items.filter(this.unique), ...this.items];
     this.save();
     return this;

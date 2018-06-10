@@ -39,17 +39,20 @@ export default class TodoList extends React.Component {
   }
 
   selectItem = item => e => {
-    let items = this.service
-      .toggle(item)
-      .getAll();
+    let items = this.service.toggle(item).getAll();
     this.setState({ items });
   }
+
+  addItem = item => {
+    let items = this.service.add(item).getAll();
+    this.setState({ items });
+  };
 
   removeItem = target => e => {
     let items = [...this.state.items];
     items.splice(target, 1);
     this.setState({ items });
-  }  
+  }
 
   render() {
     return (
@@ -62,7 +65,7 @@ export default class TodoList extends React.Component {
             onDelete={this.removeItem(item)}
           >{item.content}</TodoItem>
         )}
-        <TodoAdd></TodoAdd>
+        <TodoAdd onAdd={this.addItem}></TodoAdd>
       </div>
     )
   }
