@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { TodoItem, TodoAdd } from './index';
+import Service from './service';
 
 import './list.css';
 
@@ -13,7 +14,10 @@ export default class TodoList extends React.Component {
     ])
   }
 
-  items = [
+  constructor() {
+    super();
+
+    this.service = new Service([
       {
         content: 'some list item',
         done: false
@@ -26,17 +30,15 @@ export default class TodoList extends React.Component {
         content: 'third item',
         done: false
       },
-    ];
-
-  state = {
-    items: this.items
-  };
+    ]);
+  }
 
   componentWillMount() {
-    const children = this.processChildren();
-    if (children) {
-      this.setState({ items: [...this.state.items, ...children] });
-    }    
+    this.service.addMany(this.processChildren());
+
+    this.setState({
+      items: this.service.get()
+    });
   }
 
   processChildren() {
@@ -64,10 +66,10 @@ export default class TodoList extends React.Component {
     )
   }
 
-  selectItem = target => e => {
-    let items = [...this.state.items];
-    let item = items.find(el => el === target);
-    item.done = !item.done;
+  selectItem = item => e => {
+    let items = this.service
+      .toggle(item)
+      .get();
     this.setState({ items });
   }
 
