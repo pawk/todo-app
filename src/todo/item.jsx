@@ -39,13 +39,11 @@ TodoItem.propTypes = {
   done: PropTypes.bool,
   onSelect: PropTypes.func,
   onDelete: PropTypes.func,
-  children: PropTypes.string.isRequired,
-  key: PropTypes.number
+  children: PropTypes.string.isRequired
 }
 
 TodoItem.defaultProps = {
   done: false,
   onSelect: () => {},
-  onDelete: () => {},
-  key: 0
+  onDelete: () => {}
 }

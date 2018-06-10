@@ -48,9 +48,8 @@ export default class TodoList extends React.Component {
     this.setState({ items });
   };
 
-  removeItem = target => e => {
-    let items = [...this.state.items];
-    items.splice(target, 1);
+  removeItem = item => e => {
+    let items = this.service.delete(item).getAll();
     this.setState({ items });
   }
 
