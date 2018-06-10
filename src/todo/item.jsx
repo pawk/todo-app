@@ -1,32 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import * as style from './item.css';
+import './item.css';
 
-export const TodoItem = ({ done, order, handleDelete, handleSelection, children }) => (console.log(order),
-  <section className="todo__item">
-    <div>
-      <input 
-        type="checkbox"
-        id="item{order}"
-        onChange={handleSelection} />
-    </div>
-    <div><label htmlFor="item{order}">{children}</label></div>
-    <div>
-      <button 
-        className="todo__item-delete-btn"
-        onClick={handleDelete}
-        >
-        - Delete
-      </button>
-    </div>
-  </section>
-);
+export const TodoItem = (props) => {
+  const { item, onSelect, onDelete, children } = props;
+  const { done } = item;
+  const className = done && 'todo__item--done' || 'todo__item';
+
+
+  return (
+    <section className={className}>
+      <div>
+        <input
+          type="checkbox"
+          id="item{order}"
+          onChange={onSelect} />
+      </div>
+      <div className="todo__item-content">
+        <label htmlFor="item{order}">{children}</label>
+      </div>
+      <div>
+        <button
+          className="todo__item-delete-btn"
+          onClick={onDelete}
+          > - Delete</button>
+      </div>
+    </section>
+  );
+};
 
 TodoItem.propTypes = {
   done: PropTypes.bool,
-  handleDelete: PropTypes.func.isRequired,
-  handleDelete: PropTypes.func.isRequired,
+  onSelect: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
   children: PropTypes.string.isRequired
 }
 

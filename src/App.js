@@ -10,7 +10,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <TodoList>
-          <TodoItem>jeden</TodoItem>
+          <TodoItem done>jeden</TodoItem>
           <TodoItem>dwa</TodoItem>
         </TodoList>
       </div>
