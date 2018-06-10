@@ -21,7 +21,7 @@ export default class TodoList extends React.Component {
   }
 
   componentWillMount() {
-    this.service.addMany(this.processChildren());
+    this.service.add(...this.processChildren());
 
     this.setState({
       items: this.service.getAll()
@@ -38,6 +38,19 @@ export default class TodoList extends React.Component {
     });
   }
 
+  selectItem = item => e => {
+    let items = this.service
+      .toggle(item)
+      .getAll();
+    this.setState({ items });
+  }
+
+  removeItem = target => e => {
+    let items = [...this.state.items];
+    items.splice(target, 1);
+    this.setState({ items });
+  }  
+
   render() {
     return (
       <div className="todo__list">
@@ -52,18 +65,5 @@ export default class TodoList extends React.Component {
         <TodoAdd></TodoAdd>
       </div>
     )
-  }
-
-  selectItem = item => e => {
-    let items = this.service
-      .toggle(item)
-      .getAll();
-    this.setState({ items });
-  }
-
-  removeItem = target => e => {
-    let items = [...this.state.items];
-    items.splice(target, 1);
-    this.setState({ items });
   }
 }

@@ -9,13 +9,7 @@ export default class TodoService {
     return this.items.sort(elem => elem.done);
   }
 
-  add(item) {
-    this.items.push(item);
-    this.save();
-    return this;
-  }
-
-  addMany(items) {
+  add(...items) {
     this.items = [...items.filter(this.unique), ...this.items];
     this.save();
     return this;
