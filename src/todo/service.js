@@ -5,8 +5,8 @@ export default class TodoService {
     this.items = items || [];
   }
 
-  get() {
-    return this.items;
+  getAll() {
+    return this.items.sort(elem => elem.done);
   }
 
   add(item) {
@@ -15,7 +15,7 @@ export default class TodoService {
   }
 
   addMany(items) {
-    this.items = [...this.items, ...items];
+    this.items = [...items, ...this.items];
     return this;
   }
 

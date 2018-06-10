@@ -37,7 +37,7 @@ export default class TodoList extends React.Component {
     this.service.addMany(this.processChildren());
 
     this.setState({
-      items: this.service.get()
+      items: this.service.getAll()
     });
   }
 
@@ -54,8 +54,9 @@ export default class TodoList extends React.Component {
   render() {
     return (
       <div className="todo__list">
-        {this.state.items.map(item =>
+        {this.state.items.map((item, key) =>
           <TodoItem
+            key={key}
             item={item}
             onSelect={this.selectItem(item)}
             onDelete={this.removeItem(item)}
@@ -69,7 +70,7 @@ export default class TodoList extends React.Component {
   selectItem = item => e => {
     let items = this.service
       .toggle(item)
-      .get();
+      .getAll();
     this.setState({ items });
   }
 

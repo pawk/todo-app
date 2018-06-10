@@ -15,7 +15,8 @@ export const TodoItem = (props) => {
         <input
           type="checkbox"
           id="item{order}"
-          onChange={onSelect} />
+          onChange={onSelect}
+          checked={done} />
       </div>
       <div className="todo__item-content">
         <label htmlFor="item{order}">{children}</label>
@@ -32,11 +33,13 @@ export const TodoItem = (props) => {
 
 TodoItem.propTypes = {
   done: PropTypes.bool,
-  onSelect: PropTypes.func.isRequired,
-  onDelete: PropTypes.func.isRequired,
+  onSelect: PropTypes.func,
+  onDelete: PropTypes.func,
   children: PropTypes.string.isRequired
 }
 
 TodoItem.defaultProps = {
-  done: false
+  done: false,
+  onSelect: () => {},
+  onDelete: () => {}
 }
