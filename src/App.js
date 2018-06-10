@@ -11,6 +11,9 @@ class App extends React.Component {
       <div className="App">
         <TodoList>
           <TodoItem done>jeden</TodoItem>
+          <TodoItem>siedem</TodoItem>
+          <TodoItem>piec</TodoItem>
+          <TodoItem done>osiem</TodoItem>
           <TodoItem>dwa</TodoItem>
         </TodoList>
       </div>

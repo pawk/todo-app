@@ -6,10 +6,12 @@ export default class TodoService {
   }
 
   getAll() {
-    return this.items.sort(elem => elem.done);
+    return this.items
+      .sort(elem => elem.done);
   }
 
   add(...items) {
+    console.log(items.filter(this.unique))
     this.items = [...items.filter(this.unique), ...this.items];
     this.save();
     return this;
@@ -42,5 +44,5 @@ export default class TodoService {
     localStorage.setItem('items', JSON.stringify(this.items));
   }
 
-  unique = (item) => !this.items.find(el => el.content !== item.content);
+  unique = (item) => !this.items.find(el => el.content === item.content);
 }
