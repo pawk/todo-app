@@ -20,7 +20,7 @@ export const TodoItem = (props) => {
           type="checkbox"
           id={id}
           onChange={onSelect}
-          checked={done} />
+          checked={done ? true : false} />
       </div>
       <div className="todo__item-content">
         <label htmlFor={id}>{content}</label>

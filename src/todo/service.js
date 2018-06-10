@@ -7,7 +7,7 @@ export default class TodoService {
 
   getAll() {
     return this.items
-      .sort(elem => elem.done);
+      .sort(elem => elem.done ? 1 : -1);
   }
 
   add(...items) {
