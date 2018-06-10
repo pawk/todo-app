@@ -33,18 +33,21 @@ export default class TodoList extends React.Component {
   };
 
   componentWillMount() {
-    // this.setState({ items: this.props.children });
-  }
-  
-  TODOparseProvidedElements() {
-    return this.state.items.map((item, key) => React.cloneElement(item, {
-      key,
-      order: key,
-      onSelect: this.selectItem,
-      onDelete: () => console.log('handling delete!')
-    }));
+    const children = this.processChildren();
+    if (children) {
+      this.setState({ items: [...this.state.items, ...children] });
+    }    
   }
 
+  processChildren() {
+    if (!this.props.children) {
+      return null;
+    }
+    return this.props.children.map(child => {
+      const { done, children: content } = child.props;
+      return { done, content };
+    });
+  }
 
   render() {
     return (
