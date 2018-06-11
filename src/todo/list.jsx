@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+// TODO - break imports 
 import { TodoItem, TodoAdd } from './index';
+import TodoFilter from './filter';
 import Service from './service';
 
 import './list.css';
@@ -12,6 +14,11 @@ export default class TodoList extends React.Component {
       PropTypes.arrayOf(PropTypes.element),
       PropTypes.element
     ])
+  }
+
+  state = {
+    items: null,
+    filter: null
   }
 
   constructor() {
@@ -41,25 +48,46 @@ export default class TodoList extends React.Component {
   }
 
   selectItem = item => e => {
-    const items = this.service.toggle(item).getAll();
+    const items = this.service
+      .toggle(item)
+      .getAll({
+        filter: this.state.filter 
+      });
     this.setState({ items });
   }
 
   addItem = item => {
-    const items = this.service.add(item).getAll();
+    const items = this.service
+      .add(item)
+      .getAll({
+        filter: this.state.filter
+      });
     this.setState({ items });
   };
 
   updateItem = item => content => {
     let found = this.state.items.find(el => el === item);
     found.content = content;
-    const items = this.service.update(item, content).getAll();
+    const items = this.service
+      .update(item, content)
+      .getAll({
+        filter: this.state.filter
+      });
     this.setState({ items });
   }
 
   removeItem = item => e => {
-    let items = this.service.delete(item).getAll();
+    let items = this.service
+      .delete(item)
+      .getAll({
+        filter: this.state.filter
+      });
     this.setState({ items });
+  }
+
+  filterItems = filter => {
+    const items = this.service.getAll({ filter });
+    this.setState({ filter, items });
   }
 
   render() {
@@ -75,7 +103,8 @@ export default class TodoList extends React.Component {
             onUpdate={this.updateItem(item)}
           >{item.content}</TodoItem>
         )}
+      <TodoFilter onFilter={this.filterItems} ></TodoFilter>        
       </div>
-    )
+    );
   }
 }

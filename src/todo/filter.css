@@ -1,0 +1,3 @@
+.todo__filter-input::placeholder {
+  color: var(--filter-input-placeholder-color);
+}

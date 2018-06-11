@@ -7,8 +7,12 @@ export default class TodoService {
     this.load();
   }
 
-  getAll() {
-    return this.items.sort(this.ordering);
+  getAll({ filter } = {}) {
+    let ret = this.items;
+    if (filter) {
+      ret = ret.filter(item => item.content.includes(filter));
+    }
+    return ret.sort(this.ordering);
   }
 
   add(...items) {
@@ -45,7 +49,7 @@ export default class TodoService {
 
   load() {
     const stored = localStorage.getItem('items');
-    let max= 0;
+    let max = 0;
 
     if (stored) {
       this.items = [...this.items, ...JSON.parse(stored)];
@@ -59,7 +63,8 @@ export default class TodoService {
     localStorage.setItem('items', JSON.stringify(this.items));
   }
 
-  unique = (item) => !this.items.find(el => el.content === item.content);
+  unique = (item) => !this.items
+    .find(el => el.content === item.content);
 
   ordering = (a, b) => {
     if (a.done === b.done) {

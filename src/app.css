@@ -1,5 +1,6 @@
 :root {
   --item-input-text-color: #646464;
+  --filter-input-placeholder-color: #ccc;
   --item-done-text-color: lightgray;
 }
 
