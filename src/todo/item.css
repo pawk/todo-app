@@ -4,17 +4,12 @@
   flex-direction: row;
   justify-content: space-between;
   margin-bottom: 3px;
-  transition: background-color 200ms ease-in-out;
   user-select: none;
 }
 
 .todo__item--done {
   color: lightgray;
   text-decoration: line-through;
-}
-
-.todo__item:hover {
-  background: #efefef;
 }
 
 .todo__item-content {
@@ -31,7 +26,7 @@
   width: 100%;
 }
 
-.todo__item-delete-btn {
+.todo__item button {
   border: solid 1px lightblue;
   cursor: pointer;
   font-size: 0.7em;
@@ -45,7 +40,14 @@
   margin-right: 10px;
 }
 
-.todo__item:hover .todo__item-delete-btn {
+.todo__item-content input[type=text] {
+  align-self: stretch;
+  border: none;
+  flex-grow: 1;
+  font-size: 1em;
+}
+
+.todo__item:hover button {
   opacity: 1;
   transform: translateX(0);
 }

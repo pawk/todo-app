@@ -18,6 +18,12 @@ export default class TodoService {
     return this;
   }
 
+  edit(item) {
+    
+    this.save();
+    return this;
+  }
+
   delete(item) {
     const pos = this.items.indexOf(item);
     if (pos !== -1) {
