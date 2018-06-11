@@ -90,6 +90,18 @@ export default class TodoList extends React.Component {
     this.setState({ filter, items });
   }
 
+  filterAll = e => {
+    console.log('filter all')
+  }
+
+  filterDone = e => {
+    console.log('filter done')
+  }
+
+  filterPending = e => {
+    console.log('filter pending')
+  }    
+
   render() {
     return (
       <div className="todo__list">
@@ -103,7 +115,12 @@ export default class TodoList extends React.Component {
             onUpdate={this.updateItem(item)}
           >{item.content}</TodoItem>
         )}
-      <TodoFilter onFilter={this.filterItems} ></TodoFilter>        
+      <TodoFilter
+        onFilter={this.filterItems}
+        onAll={this.filterAll}
+        onDone={this.filterDone}
+        onPending={this.filterPending}
+        ></TodoFilter>
       </div>
     );
   }
