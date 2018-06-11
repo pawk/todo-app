@@ -1,3 +1,5 @@
+import ordinals from '../utils/ordinal-numbers';
+
 export default class TodoService {
   items = [];
 
@@ -43,10 +45,15 @@ export default class TodoService {
 
   load() {
     const stored = localStorage.getItem('items');
+    let max= 0;
+
     if (stored) {
       this.items = [...this.items, ...JSON.parse(stored)];
+      max = this.items.reduce((acc, item) => (item.order > acc) ? item.order : acc, 0);
     }
+    this.ordinal = ordinals(++max);
   }
+
 
   save() {
     localStorage.setItem('items', JSON.stringify(this.items));
@@ -56,7 +63,7 @@ export default class TodoService {
 
   ordering = (a, b) => {
     if (a.done === b.done) {
-      return a.content < b.content ? -1 : (a.content > b.content) ? 1 : 0;
+      return a.order < b.order ? 1 : (a.order > b.order) ? -1 : 0;
     } else {
       return a.done - b.done;
     }
@@ -68,6 +75,9 @@ export default class TodoService {
     }
     if (!elem.hasOwnProperty('id')) {
       elem.id = elem.content.replace(/[^a-zA-Z0-9]/g, '-');
+    }
+    if (!elem.hasOwnProperty('order')) {
+      elem.order = this.ordinal();
     }
     return elem;
   }

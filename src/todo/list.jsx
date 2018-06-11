@@ -41,7 +41,7 @@ export default class TodoList extends React.Component {
   }
 
   selectItem = item => e => {
-    let items = this.service.toggle(item).getAll();
+    const items = this.service.toggle(item).getAll();
     this.setState({ items });
   }
 
