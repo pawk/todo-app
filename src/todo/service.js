@@ -7,10 +7,13 @@ export default class TodoService {
     this.load();
   }
 
-  getAll({ filter } = {}) {
+  getAll({ filter, done } = {}) {
     let ret = this.items;
     if (filter) {
       ret = ret.filter(item => item.content.includes(filter));
+    }
+    if (typeof done === 'boolean') {
+      ret = ret.filter(item => item.done === done);
     }
     return ret.sort(this.ordering);
   }
