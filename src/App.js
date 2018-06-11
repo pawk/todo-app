@@ -8,11 +8,8 @@ class App extends React.Component {
     return (
       <div className="todo-app">
         <TodoList>
-          <TodoItem done>jeden</TodoItem>
-          <TodoItem>siedem</TodoItem>
-          <TodoItem>piec</TodoItem>
-          <TodoItem done>osiem</TodoItem>
-          <TodoItem>dwa</TodoItem>
+          <TodoItem done>buy some milk</TodoItem>
+          <TodoItem>evening ballet classes</TodoItem>
         </TodoList>
       </div>
     );

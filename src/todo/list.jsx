@@ -21,7 +21,9 @@ export default class TodoList extends React.Component {
   }
 
   componentWillMount() {
-    this.service.add(...this.processChildren());
+    if (!this.service.getAll().length) {
+      this.service.add(...this.processChildren());
+    }
 
     this.setState({
       items: this.service.getAll()
