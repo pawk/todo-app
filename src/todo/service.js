@@ -6,12 +6,14 @@ export default class TodoService {
   }
 
   getAll() {
-    return this.items
-      .sort(elem => elem.done ? 1 : -1);
+    return this.items.sort(this.ordering);
   }
 
   add(...items) {
-    this.items = [...items.filter(this.unique), ...this.items];
+    this.items = [
+      ...items.filter(this.unique).map(this.normalize),
+      ...this.items
+    ];
     this.save();
     return this;
   }
@@ -44,4 +46,19 @@ export default class TodoService {
   }
 
   unique = (item) => !this.items.find(el => el.content === item.content);
+
+  ordering = (a, b) => {
+    if (a.done === b.done) {
+      return a.content < b.content ? -1 : (a.content > b.content) ? 1 : 0;
+    } else {
+      return a.done - b.done;
+    }
+  }
+
+  normalize = elem => {
+    if (!elem.hasOwnProperty('done')) {
+      elem.done = false;
+    }
+    return elem;
+  }
 }
