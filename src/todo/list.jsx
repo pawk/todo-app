@@ -21,20 +21,17 @@ export default class TodoList extends React.Component {
     filter: null
   }
 
-  constructor() {
-    super();
-
+  constructor(props) {
+    super(props);
     this.service = new Service();
   }
 
   componentWillMount() {
-    if (!this.service.getAll().length) {
+    const items = this.getItems();
+    if (!items.length) {
       this.service.add(...this.processChildren());
     }
-
-    this.setState({
-      items: this.service.getAll()
-    });
+    this.setState({ items });
   }
 
   processChildren() {
@@ -47,51 +44,46 @@ export default class TodoList extends React.Component {
     });
   }
 
+  getItems({ filter, done } = this.state) {
+    return this.service.getAll({ filter, done });
+  }
+
   selectItem = item => e => {
-    const { filter, done } = this.state;
-    const items = this.service
-      .toggle(item)
-      .getAll({ filter, done });
-    this.setState({ items });
+    this.service.toggle(item);
+    this.setState({ items: this.getItems() });
   }
 
   addItem = item => {
-    const { filter, done } = this.state;
-    const items = this.service
-      .add(item)
-      .getAll({ filter, done });
-    this.setState({ items });
+    this.service.add(item);
+    this.setState({ items: this.getItems() });
   };
 
   updateItem = item => content => {
-    const { filter, done } = this.state;
     let found = this.state.items.find(el => el === item);
     found.content = content;
-    const items = this.service
-      .update(item, content)
-      .getAll({ filter, done });
-    this.setState({ items });
+    this.service.update(item, content);
+    this.setState({ items: this.getItems() });
   }
 
   removeItem = item => e => {
-    const { filter, done } = this.state;
-    let items = this.service
-      .delete(item)
-      .getAll({ filter, done });
-    this.setState({ items });
+    this.service.delete(item);
+    this.setState({ items: this.getItems() });
   }
 
   filterItems = filter => {
     const { done } = this.state;
-    const items = this.service.getAll({ filter, done });
-    this.setState({ filter, items });
+    this.setState({ 
+      filter, 
+      items: this.getItems({ filter, done })
+    });    
   }
 
   filterWithDone = done => e => {
     const { filter } = this.state;
-    const items = this.service
-      .getAll({ filter, done });
-    this.setState({ items, done });
+    this.setState({
+      done,
+      items: this.getItems({ filter, done })
+    });
   }
 
   render() {

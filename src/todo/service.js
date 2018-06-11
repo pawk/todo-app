@@ -24,14 +24,12 @@ export default class TodoService {
       ...this.items
     ];
     this.save();
-    return this;
   }
 
   update(item, value) {
     const found = this.items.find(el => el.content === item.content);
     found.content = value;
     this.save();
-    return this;
   }
 
   delete(item) {
@@ -40,14 +38,12 @@ export default class TodoService {
       this.items.splice(pos, 1);
     }
     this.save();
-    return this;
   }
 
   toggle(item) {
     const found = this.items.find(el => el === item);
     found.done = !found.done;
     this.save();
-    return this;
   }
 
   load() {
@@ -60,7 +56,6 @@ export default class TodoService {
     }
     this.ordinal = ordinals(++max);
   }
-
 
   save() {
     localStorage.setItem('items', JSON.stringify(this.items));
