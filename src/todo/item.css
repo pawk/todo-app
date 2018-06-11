@@ -32,9 +32,13 @@
   font-size: 0.7em;
   opacity: 0;
   padding: 10px;
-  transform: translateX(100px);
-  transition: transform 200ms ease-in-out, opacity 200ms ease-in;
+  transition: opacity 100ms ease-in;
 }
+
+.todo__item:hover button {
+  opacity: 1;
+}
+
 
 .todo__item-content input[type=checkbox] {
   margin-right: 10px;
@@ -45,9 +49,4 @@
   border: none;
   flex-grow: 1;
   font-size: 1em;
-}
-
-.todo__item:hover button {
-  opacity: 1;
-  transform: translateX(0);
 }
