@@ -41,8 +41,8 @@
   transition: transform 200ms ease-in-out, opacity 200ms ease-in;
 }
 
-.todo__item-checkbox {
-  display: none;
+.todo__item-content input[type=checkbox] {
+  margin-right: 10px;
 }
 
 .todo__item:hover .todo__item-delete-btn {
