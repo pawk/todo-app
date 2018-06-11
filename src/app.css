@@ -1,0 +1,9 @@
+:root {
+  --item-input-text-color: #646464;
+  --item-done-text-color: lightgray;
+}
+
+.todo-app {
+  width: 500px;
+  margin: 0 auto;
+}

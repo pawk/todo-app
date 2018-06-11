@@ -8,7 +8,7 @@
 }
 
 .todo__item--done {
-  color: lightgray;
+  color: var(--item-done-text-color);
   text-decoration: line-through;
 }
 
@@ -47,6 +47,7 @@
 .todo__item-content input[type=text] {
   align-self: stretch;
   border: none;
+  color: var(--item-input-text-color);
   flex-grow: 1;
   font-size: 1em;
 }
