@@ -5,9 +5,6 @@ out=${2:-"build/"}
 origin=${1:-"git@github.com:pawel-gawel/todo-app.git"}
 
 run() {
-  rm -rf $out
-  npm run build
-
   pushd $out
   git init
   git add .
