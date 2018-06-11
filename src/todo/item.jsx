@@ -7,32 +7,40 @@ function slugify(str) {
   return str.replace(/[^A-Za-z0-9]/g, '')
 }
 
-export const TodoItem = (props) => {
-  const { item, onSelect, onUpdate, onDelete, children: content } = props;
-  const { done } = item;
-  const className = done ? 'todo__item todo__item--done' : 'todo__item';
-  const id = "item-".concat(slugify(content));
+export class TodoItem extends React.Component {
+  state = {};
 
-  return (
-    <div htmlFor={id} className={className}>
-      <div className="todo__item-content">
-        <input
-          type="checkbox"
-          id={id}
-          onChange={onSelect}
-          checked={done ? true : false} />        
-        {!done && <input 
-          type="text" 
-          value={content} /> || content}
+  render() {
+    const { item, onSelect, onUpdate, onDelete } = this.props;
+    const { done, content } = item;
+    const className = done ? 'todo__item todo__item--done' : 'todo__item';
+    const id = "item-".concat(slugify(content));
+
+    let handleChange = e => onUpdate(e.target.value);
+    
+    return (
+      <div htmlFor={id} className={className}>
+        <div className="todo__item-content">
+          <input
+            type="checkbox"
+            id={id}
+            onChange={onSelect}
+            checked={done ? true : false} />        
+          {!done && <input 
+            type="text" 
+            value={this.state.content} 
+            defaultValue={content} 
+            onChange={handleChange} /> || content}
+        </div>
+        <div>
+          <button
+            className="todo__item-delete-btn"
+            onClick={onDelete}
+            >Delete</button>
+        </div>
       </div>
-      <div>
-        <button
-          className="todo__item-delete-btn"
-          onClick={onDelete}
-          >Delete</button>
-      </div>
-    </div>
-  );
+    );
+  }
 };
 
 TodoItem.propTypes = {

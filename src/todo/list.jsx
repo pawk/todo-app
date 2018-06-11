@@ -50,6 +50,10 @@ export default class TodoList extends React.Component {
     this.setState({ items });
   };
 
+  updateItem = item => content => {
+    console.log(content)
+  }
+
   removeItem = item => e => {
     let items = this.service.delete(item).getAll();
     this.setState({ items });
@@ -65,6 +69,7 @@ export default class TodoList extends React.Component {
             item={item}
             onSelect={this.selectItem(item)}
             onDelete={this.removeItem(item)}
+            onUpdate={this.updateItem(item)}
           >{item.content}</TodoItem>
         )}
       </div>
