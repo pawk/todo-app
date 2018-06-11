@@ -10,6 +10,7 @@
 
 .todo__add-input {
   font-size: 0.8em;
+  padding: 5px;
   width: calc(100% - 3em);
 }
 
