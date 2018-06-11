@@ -18,8 +18,9 @@ export default class TodoService {
     return this;
   }
 
-  edit(item) {
-    
+  update(item, value) {
+    const found = this.items.find(el => el.content === item.content);
+    found.content = value;
     this.save();
     return this;
   }
@@ -64,6 +65,9 @@ export default class TodoService {
   normalize = elem => {
     if (!elem.hasOwnProperty('done')) {
       elem.done = false;
+    }
+    if (!elem.hasOwnProperty('id')) {
+      elem.id = elem.content.replace(/[^a-zA-Z0-9]/g, '-');
     }
     return elem;
   }
