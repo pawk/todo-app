@@ -15,7 +15,7 @@ npm run build
 ## Deploy to GitHub pages
 
 ```
-./scripts/deploy.sh
+npm run deploy
 ```
 
 ## Technology stack
@@ -26,9 +26,9 @@ Minimal dependencies (no css preprocessor, no styled components library etc).
 
 ## Assumptions 
 
-All todo items are currently sorted by Completed attribute as well as alphabetically.
+All items are currently sorted by `done` attribute as well as in order of entry.
 
-One can perform CRUD operations on list items.
+One can perform CRUD operations on all items.
 
 Items are being stored in browser's `localStorage`.
 

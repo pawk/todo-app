@@ -20,7 +20,7 @@ export const TodoAdd = ({ onAdd }) => {
 
   return (
     <section className="todo__add">
-      <input className="todo__add-input"onKeyUp={handleKeyUp} placeholder="Next thing to do is ..." />
+      <input className="todo__add-input"onKeyUp={handleKeyUp} placeholder="Enter new item" />
       <button className="todo__add-btn" onClick={handleAdd}>+</button>
     </section>
   );
