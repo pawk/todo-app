@@ -40,6 +40,7 @@ Minimal dependencies (no css preprocessor, no styled components library etc).
  - React's Compound Pattern for building the list,
  - nextcss,
  - BEM for css naming convention,
+ - bash deployment script,
  - and more
 
  Project currently lacks of unit tests and additional UX improvements like drag'n'drop.

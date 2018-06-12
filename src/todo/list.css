@@ -2,3 +2,8 @@
   overflow: hidden;
   width: 100%;
 }
+
+.todo__list ul {
+  list-style-type: none;
+  padding: 0;
+}

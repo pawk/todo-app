@@ -84,24 +84,28 @@ export default class TodoList extends React.Component {
 
   render() {
     return (
-      <div className="todo__list">
+      <section className="todo__list">
         <TodoAdd onAdd={this.addItem}></TodoAdd>
-        {this.state.items.map((item, key) =>
-          <TodoItem
-            key={item.id}
-            item={item}
-            onSelect={this.selectItem(item)}
-            onDelete={this.removeItem(item)}
-            onUpdate={this.updateItem(item)}
-          >{item.content}</TodoItem>
-        )}
+        <ul>
+          {this.state.items.map((item, key) =>
+            <li key={item.id}>
+              <TodoItem
+                key={item.id}
+                item={item}
+                onSelect={this.selectItem(item)}
+                onDelete={this.removeItem(item)}
+                onUpdate={this.updateItem(item)}
+              >{item.content}</TodoItem>
+            </li>
+          )}
+        </ul>
       <TodoFilter
         onFilter={this.filterItems}
         onAll={this.filterWithDone(null)}
         onDone={this.filterWithDone(true)}
         onPending={this.filterWithDone(false)}
         ></TodoFilter>
-      </div>
+      </section>
     );
   }
 }
