@@ -1,22 +1,24 @@
 # Todo App
 
-## Run
+### Run
 
 ```
 npm start
 ```
 
-## Production build
+### Production build
 
 ```
 npm run build
 ```
 
-## Deploy to GitHub pages
+### Deploy to GitHub pages
 
 ```
 npm run deploy
 ```
+
+Project is currently available under [https://pawel-gawel.github.io/todo-app/](https://pawel-gawel.github.io/todo-app/)
 
 ## Technology stack
 
