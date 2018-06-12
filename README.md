@@ -40,6 +40,7 @@ Minimal dependencies (no css preprocessor, no styled components library etc).
  - es6/7 all over the place,
  - generator used for generation of ordinal numbers,
  - React's Compound Pattern for building the list,
+ - a little bit of RWD so it can be conveniently used on handheld devices,
  - nextcss,
  - BEM for css naming convention,
  - bash deployment script,
