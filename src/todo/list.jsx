@@ -27,7 +27,8 @@ export default class TodoList extends React.Component {
   }
 
   componentWillMount() {
-    const items = this.getItems();
+    const { filter, done } = this.state;
+    const items = this.service.getAll({ filter, done });
     if (!items.length) {
       this.service.add(...this.processChildren());
     }
@@ -44,46 +45,41 @@ export default class TodoList extends React.Component {
     });
   }
 
-  getItems({ filter, done } = this.state) {
-    return this.service.getAll({ filter, done });
+  updateState({ filter, done } = this.state) {
+    const items = this.service.getAll({ filter, done });
+    this.setState({ filter, done, items });
   }
 
   selectItem = item => e => {
     this.service.toggle(item);
-    this.setState({ items: this.getItems() });
+    this.updateState();
   }
 
   addItem = item => {
     this.service.add(item);
-    this.setState({ items: this.getItems() });
+    this.updateState();
   };
 
   updateItem = item => content => {
     let found = this.state.items.find(el => el === item);
     found.content = content;
     this.service.update(item, content);
-    this.setState({ items: this.getItems() });
+    this.updateState();
   }
 
   removeItem = item => e => {
     this.service.delete(item);
-    this.setState({ items: this.getItems() });
+    this.updateState();
   }
 
   filterItems = filter => {
     const { done } = this.state;
-    this.setState({ 
-      filter, 
-      items: this.getItems({ filter, done })
-    });    
+    this.updateState({ filter, done });
   }
 
   filterWithDone = done => e => {
     const { filter } = this.state;
-    this.setState({
-      done,
-      items: this.getItems({ filter, done })
-    });
+    this.updateState({ filter, done });
   }
 
   render() {
