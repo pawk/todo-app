@@ -1,3 +1,27 @@
+.todo__filter {
+  display: flex;
+  font-size: 0.7em;
+  justify-content: flex-end;
+  list-style-type: none;
+  margin: 20px 0px 20px 0px;
+}
+
+.todo__filter li {
+  margin-left: 10px;
+}
+
+.todo__filter label {
+  cursor: pointer;
+}
+
+.todo__filter [type=radio] {
+  display: none;
+}
+
+.todo__filter [type=radio]:checked + label {
+  text-decoration: underline;
+}
+
 .todo__filter-input::placeholder {
   color: var(--filter-input-placeholder-color);
 }

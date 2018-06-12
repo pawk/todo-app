@@ -11,7 +11,7 @@
 .todo__add-input {
   font-size: 0.8em;
   padding: 5px;
-  width: calc(100% - 3em);
+  width: 100%;
 }
 
 .todo__add-input::placeholder {

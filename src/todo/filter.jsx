@@ -15,15 +15,41 @@ export default function TodoFilter({
   onDone,
   onPending
 }) {
+  const filters = [
+    {
+      label: 'All',
+      handler: onAll,
+      checked: true
+    },
+    {
+      label: 'Pending',
+      handler: onPending
+    },
+    {
+      label: 'Done',
+      handler: onDone
+    }
+  ];
+  
   return (
-    <section>
-      <button onClick={onAll}>All</button>
-      <button onClick={onDone}>Done</button>
-      <button onClick={onPending}>Pending</button>
-      <input type="text"
-        className="todo__filter-input"
-        onKeyUp={handleKeyUp(onFilter)}
-        placeholder="Filter" />
-    </section>
+    <ul className="todo__filter">
+      {filters.map(({ label, handler, checked }, key) => (
+        <li key={key}>
+          <input 
+            type="radio" 
+            name="doneFilter" 
+            id={label} 
+            onClick={handler}
+            defaultChecked={checked} />
+          <label htmlFor={label}>{label}</label>
+        </li>
+      ))}
+      <li>
+        <input type="text"
+          className="todo__filter-input"
+          onKeyUp={handleKeyUp(onFilter)}
+          placeholder="Filter" />
+      </li>
+    </ul>
   );
 }
