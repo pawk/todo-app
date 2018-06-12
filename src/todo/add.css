@@ -1,10 +1,10 @@
 .todo__add {
   align-content: center;
+  box-sizing: border-box;
   display: flex;
   flex-direction: row;
-  height: 2em;
   justify-content: space-between;
-  margin: 20px 0px 20px 0px;  
+  margin: 20px 0px 20px 0px;
   width: 100%;
 }
 
@@ -16,4 +16,22 @@
 
 .todo__add-input::placeholder {
   color: #ccc;
+}
+
+@media screen and (max-width: 800px) {
+  .todo__add {
+    background-color: #fff;
+    left: 0;
+    margin: 0;
+    padding: 0.5em;
+    right: 0;
+    position: fixed;
+    top: 0;
+  }
+
+  .todo__add-input {
+    border: 0;
+    font-size: 1em;
+    outline: none;
+  }
 }

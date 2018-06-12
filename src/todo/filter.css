@@ -7,6 +7,19 @@
   margin: 20px 0px 20px 0px;
 }
 
+@media screen and (max-width: 800px) {
+  .todo__filter {
+    background-color: #fff;
+    bottom: 0;
+    box-sizing: border-box;
+    font-size: 0.9em;
+    margin: 0;
+    padding: 20px;
+    position: fixed;
+    width: 100%;
+  }
+}
+
 .todo__filter li {
   margin-left: 10px;
 }
@@ -24,7 +37,10 @@
 }
 
 .todo__filter-input {
+  border: none;
+  border-bottom: dotted 1px #ccc;  
   font-size: 1em;
+  outline: none;
 }
 
 .todo__filter-input::placeholder {

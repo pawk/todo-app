@@ -86,7 +86,7 @@ export default class TodoList extends React.Component {
     return (
       <section className="todo__list">
         <TodoAdd onAdd={this.addItem}></TodoAdd>
-        <ul>
+        <ul className="todo__list-items">
           {this.state.items.map((item, key) =>
             <li key={item.id}>
               <TodoItem

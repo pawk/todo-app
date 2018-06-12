@@ -3,7 +3,13 @@
   width: 100%;
 }
 
-.todo__list ul {
+.todo__list-items {
   list-style-type: none;
   padding: 0;
+}
+
+@media screen and (max-width: 800px) {
+  .todo__list-items {
+    margin: 3em 0 4em 0;
+  }
 }
