@@ -17,15 +17,3 @@
 .todo__add-input::placeholder {
   color: #ccc;
 }
-
-.todo__add-btn {
-  font-size: 0.85em;
-  width: 3em;
-  display: none;
-}
-
-@media screen and (max-width: 800px) {
-  .todo__add-btn {
-    display: block;
-  }
-}
