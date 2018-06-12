@@ -27,10 +27,10 @@ export default class TodoList extends React.Component {
   }
 
   componentWillMount() {
-    const { filter, done } = this.state;
-    const items = this.service.getAll({ filter, done });
+    let items = this.service.getAll();
     if (!items.length) {
       this.service.add(...this.processChildren());
+      items = this.service.getAll();
     }
     this.setState({ items });
   }
