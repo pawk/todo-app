@@ -47,7 +47,7 @@ export default class TodoService {
   }
 
   load() {
-    const stored = localStorage.getItem('items');
+    const stored = window.localStorage ? localStorage.getItem('items') : null;
     let max = 0;
 
     if (stored) {
@@ -58,7 +58,7 @@ export default class TodoService {
   }
 
   save() {
-    localStorage.setItem('items', JSON.stringify(this.items));
+    window.localStorage && localStorage.setItem('items', JSON.stringify(this.items));
   }
 
   unique = (item) => !this.items
