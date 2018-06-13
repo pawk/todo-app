@@ -19,11 +19,11 @@
   padding-left: 20px;
 }
 
-.todo__item-content label {
+/*.todo__item-content label {
   cursor: inherit;
   display: block;
   width: 100%;
-}
+}*/
 
 .todo__item button {
   border: solid 1px lightblue;
@@ -54,5 +54,10 @@
   border: none;
   color: var(--item-input-text-color);
   flex-grow: 1;
-  font-size: 1em;
+  font-size: 1.1em;
+}
+
+.todo__item-content input[type=text]:focus {
+  outline: none;
+  border-bottom: dotted 1px #ccc;
 }

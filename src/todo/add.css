@@ -9,7 +9,10 @@
 }
 
 .todo__add-input {
-  font-size: 0.8em;
+  border: none;
+  border-bottom: dotted 1px #ccc;
+  font-size: 1.8em;
+  outline: none;
   padding: 5px;
   width: 100%;
 }
@@ -30,8 +33,6 @@
   }
 
   .todo__add-input {
-    border: 0;
-    font-size: 1em;
-    outline: none;
+    font-size: 1.4em;
   }
 }
