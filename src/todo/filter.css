@@ -1,10 +1,10 @@
 .todo__filter {
   align-items: center;
   display: flex;
-  font-size: 0.7em;
+  font-size: 1em;
   justify-content: flex-end;
   list-style-type: none;
-  margin: 20px 0px 20px 0px;
+  margin: 2em 0 2em 0;
 }
 
 @media screen and (max-width: 800px) {
