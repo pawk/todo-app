@@ -34,7 +34,7 @@ export const TodoItem = ({ item, onSelect, onUpdate, onDelete }) => {
         <button
           className="todo__item-delete-btn"
           onClick={onDelete}
-          >⌫</button>
+          >x</button>
       </div>
     </div>
   );

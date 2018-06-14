@@ -1,9 +1,11 @@
 .todo__item, .todo__item--done {
+  align-items: center;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 3px;
+  margin-bottom: 0.5em;
   user-select: none;
+  width: 100%;
 }
 
 .todo__item--done .todo__item-content {
@@ -11,32 +13,54 @@
   text-decoration: line-through;
 }
 
-.todo__item label:before {
-  color: #222;
-  content: '○';
+.todo__item label {
+  background-color: #ddd;
+  border-radius: 50%;
   cursor: pointer;
-  font-size: 2em;
+  display: block;
+  height: 25px;
+  position: relative;
+  width: 25px;
 }
 
-.todo__item--done label:before,
-.todo__item label:hover:before {
-  color: var(--item-input-text-color);
-  content: '⦿';
-  font-size: 1.9em;
+@media screen and (min-width: 800px) {
+  .todo__item label:hover:before {
+    display: block;
+    content: '';
+    color: var(--item-input-text-color);
+    border-radius: 50%;
+    background-color: white;
+    width: 0.3em;
+    height: 0.3em;
+    font-size: 2em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);    
+  }
 }
 .todo__item--done label:before {
-  color: #ccc;
+  display: block;
+  content: '';
+  color: var(--item-input-text-color);
+  border-radius: 50%;
+  background-color: white;
+  width: 0.3em;
+  height: 0.3em;
+  font-size: 2em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .todo__item-content {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
   flex-grow: 1;
   padding-left: 0.3em;
 }
 
 .todo__item button {
+  background-color: transparent;
   border: none;
   color: #ccc;
   cursor: pointer;
@@ -47,7 +71,7 @@
 }
 
 @media screen and (min-width: 800px) {
-  .todo__item button {
+  .todo__item-delete-btn {
     opacity: 0;
   }
 }
@@ -62,11 +86,11 @@
 }
 
 .todo__item-content input[type=text] {
-  align-self: stretch;
   border: none;
   color: var(--item-input-text-color);
   flex-grow: 1;
-  font-size: 1.1em;
+  font-size: 1em;
+  width: 100%;
 }
 
 .todo__item-content input[type=text]:focus {
