@@ -17,8 +17,10 @@ export const TodoItem = ({ item, onSelect, onUpdate, onDelete }) => {
 
   return (
     <div className={className}>
+      <label htmlFor={item.id}></label>      
       <div className="todo__item-content">
         <input
+          id={item.id}
           type="checkbox"
           onChange={onSelect}
           checked={done ? true : false} />
@@ -32,7 +34,7 @@ export const TodoItem = ({ item, onSelect, onUpdate, onDelete }) => {
         <button
           className="todo__item-delete-btn"
           onClick={onDelete}
-          >Delete</button>
+          >⌫</button>
       </div>
     </div>
   );
