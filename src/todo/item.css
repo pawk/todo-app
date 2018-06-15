@@ -1,3 +1,12 @@
+@keyframes pulse {
+  50% {
+    transform: scale(1.2, 1.2);
+  }
+  100% {
+    transform: scale(0.9, 0.9);
+  }
+}
+
 .todo__item, .todo__item--done {
   align-items: center;
   display: flex;
@@ -14,17 +23,21 @@
 }
 
 .todo__item label {
+  align-items: center;
+  box-shadow: 0 0 4px #777;
+  display: flex;
+  justify-content: space-around;
+
   background-color: #ddd;
   border-radius: 50%;
   cursor: pointer;
-  display: block;
   height: 25px;
-  position: relative;
   width: 25px;
 }
 
 @media screen and (min-width: 800px) {
   .todo__item label:hover:before {
+    animation: pulse 1s ease-in-out 0s infinite;
     display: block;
     content: '';
     color: var(--item-input-text-color);
@@ -33,10 +46,6 @@
     width: 0.3em;
     height: 0.3em;
     font-size: 2em;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);    
   }
 }
 .todo__item--done label:before {
@@ -48,10 +57,6 @@
   width: 0.3em;
   height: 0.3em;
   font-size: 2em;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 .todo__item-content {
