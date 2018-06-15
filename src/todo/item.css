@@ -36,7 +36,7 @@
 }
 
 @media screen and (min-width: 800px) {
-  .todo__item label:hover:before {
+  .todo__item:hover label:before {
     animation: pulse 1s ease-in-out 0s infinite;
     display: block;
     content: '';
@@ -64,15 +64,18 @@
   padding-left: 0.3em;
 }
 
-.todo__item button {
-  background-color: transparent;
+.todo__item-delete-btn {
+  background: url(trash.svg) no-repeat center;
+  background-size: cover;
   border: none;
   color: #ccc;
   cursor: pointer;
   font-size: 1.4em;
-  opacity: 1;
+  height: 0.8em;
+  opacity: 0.3;
   outline: none;
   transition: opacity 100ms ease-in;
+  width: 0.8em;
 }
 
 @media screen and (min-width: 800px) {
@@ -81,7 +84,7 @@
   }
 }
 
-.todo__item:hover button {
+.todo__item:hover .todo__item-delete-btn {
   opacity: 1;
 }
 

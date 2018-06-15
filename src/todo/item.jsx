@@ -17,7 +17,7 @@ export const TodoItem = ({ item, onSelect, onUpdate, onDelete }) => {
 
   return (
     <div className={className}>
-      <label htmlFor={item.id}></label>      
+      <label htmlFor={item.id}></label>
       <div className="todo__item-content">
         <input
           id={item.id}
@@ -34,7 +34,7 @@ export const TodoItem = ({ item, onSelect, onUpdate, onDelete }) => {
         <button
           className="todo__item-delete-btn"
           onClick={onDelete}
-          >x</button>
+          />
       </div>
     </div>
   );
