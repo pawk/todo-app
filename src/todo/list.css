@@ -6,7 +6,7 @@
   padding: 0;
 }
 
-@media screen and (max-width: 800px) {
+@media (-moz-touch-enabled: 1), (pointer: coarse) {
   .todo__list-items {
     margin: 3em 0 5em 0;
   }

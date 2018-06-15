@@ -35,7 +35,7 @@
   width: 25px;
 }
 
-@media screen and (min-width: 800px) {
+@media (-moz-touch-enabled: 0), (pointer: fine) {
   .todo__item:hover label:before {
     animation: pulse 1s ease-in-out 0s infinite;
     display: block;
@@ -78,7 +78,7 @@
   width: 0.8em;
 }
 
-@media screen and (min-width: 800px) {
+@media (-moz-touch-enabled: 0), (pointer:fine) {
   .todo__item-delete-btn {
     opacity: 0;
   }

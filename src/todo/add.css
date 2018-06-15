@@ -21,7 +21,7 @@
   color: #ccc;
 }
 
-@media screen and (max-width: 800px) {
+@media (-moz-touch-enabled: 1), (pointer: coarse) {
   .todo__add {
     background-color: #fff;
     left: 0;
