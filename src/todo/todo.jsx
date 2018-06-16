@@ -46,47 +46,47 @@ export default class Todo extends React.Component {
     });
   }
 
-  updateState({ filter, done } = this.state) {
+  updateList({ filter, done } = this.state) {
     const items = this.service.getAll({ filter, done });
     this.setState({ filter, done, items });
   }
 
   selectItem = item => {
     this.service.toggle(item);
-    this.updateState();
+    this.updateList();
   }
 
   addItem = item => {
     this.service.add(item);
-    this.updateState();
+    this.updateList();
   };
 
   updateItem = (item, content) => {
     let found = this.state.items.find(el => el === item);
     found.content = content;
     this.service.update(item, content);
-    this.updateState();
+    this.updateList();
   }
 
   removeItem = item => {
     this.service.delete(item);
-    this.updateState();
+    this.updateList();
   }
 
   filterItems = filter => {
     const { done } = this.state;
-    this.updateState({ filter, done });
+    this.updateList({ filter, done });
   }
 
   filterWithDone = done => e => {
     const { filter } = this.state;
-    this.updateState({ filter, done });
+    this.updateList({ filter, done });
   }
 
   sortItems = ({oldIndex, newIndex}) => {
     this.service
       .reorder(arrayMove(this.state.items, oldIndex, newIndex));
-    this.updateState();
+    this.updateList();
   };
 
   render() {
