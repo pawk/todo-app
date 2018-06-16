@@ -9,7 +9,10 @@ const handleKeyUp = fn => e => {
   fn(e.target.value);
 };
 
-export default function TodoFilter({ 
+const ref = React.createRef();
+
+export default function TodoFilter({
+  value,
   onFilter,
   onAll,
   onDone,
@@ -30,7 +33,12 @@ export default function TodoFilter({
       handler: onDone
     }
   ];
-  
+
+  const handleClear = () => {
+    ref.current.value = '';
+    onFilter('');
+  }
+
   return (
     <ul className="todo__filter">
       {filters.map(({ label, handler, checked }, key) => (
@@ -44,11 +52,15 @@ export default function TodoFilter({
           <label htmlFor={label}>{label}</label>
         </li>
       ))}
-      <li>
+      <li className="todo__filter-input">
         <input type="text"
-          className="todo__filter-input"
+          ref={ref}
           onKeyUp={handleKeyUp(onFilter)}
-          placeholder="Filter" />
+          placeholder="Filter"
+        />
+        {value && <button
+          className="todo__filter-clear-button"
+          onClick={handleClear}>✖</button>}
       </li>
     </ul>
   );

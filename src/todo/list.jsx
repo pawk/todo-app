@@ -99,12 +99,13 @@ export default class TodoList extends React.Component {
             </li>
           )}
         </ul>
-      <TodoFilter
-        onFilter={this.filterItems}
-        onAll={this.filterWithDone(null)}
-        onDone={this.filterWithDone(true)}
-        onPending={this.filterWithDone(false)}
-        ></TodoFilter>
+        <TodoFilter
+          value={this.state.filter}
+          onFilter={this.filterItems}
+          onAll={this.filterWithDone(null)}
+          onDone={this.filterWithDone(true)}
+          onPending={this.filterWithDone(false)}
+        />
       </section>
     );
   }

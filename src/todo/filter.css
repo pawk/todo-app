@@ -38,12 +38,34 @@
 }
 
 .todo__filter-input {
+  position: relative;
+}
+
+.todo__filter-clear-button {
+  background-color: transparent;
+  border: none;
+  color: #ccc;
+  content: '✖';
+  cursor: pointer;
+  display: block;
+  font-size: 1em;
+  outline: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+input:not(:empty) + .todo__filter-clear-button {
+  display: block;
+}
+
+.todo__filter-input input {
   border: none;
   border-bottom: dotted 1px #ccc;  
   font-size: 1em;
   outline: none;
 }
 
-.todo__filter-input::placeholder {
+.todo__filter-input input::placeholder {
   color: var(--filter-input-placeholder-color);
 }
