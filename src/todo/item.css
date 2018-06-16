@@ -67,7 +67,7 @@
 
 .todo__item-delete-btn {
   background: url(trash.svg) no-repeat center;
-  background-size: cover;
+  background-size: contain;
   border: none;
   color: #ccc;
   cursor: pointer;
