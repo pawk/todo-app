@@ -23,27 +23,27 @@ export default function TodoList({
   const updateItem = item => content => onUpdate(item, content);
   const removeItem = item => e => onRemove(item);
 
-  const DragHandle = SortableHandle(() => <div>::</div>);
+  const DragHandle = SortableHandle(() => <div class="todo__drag-handle">☰</div>);
 
   const SortableItem = SortableElement(({item}) =>
     <li key={item.id}>
-      <TodoItem
-        key={item.id}
-        item={item}
-        onSelect={selectItem(item)}
-        onUpdate={updateItem(item)}
-        onDelete={removeItem(item)}
-      >{item.content}</TodoItem>
-      <DragHandle />
+      <div className="todo__list-item">
+        <DragHandle />
+        <TodoItem
+          key={item.id}
+          item={item}
+          onSelect={selectItem(item)}
+          onUpdate={updateItem(item)}
+          onDelete={removeItem(item)}
+        >{item.content}</TodoItem>
+      </div>
     </li>
   );
 
   const SortableList = SortableContainer(({items}) => {
     return (
       <ul className="todo__list">
-        {items.map((item, key) =>
-          <SortableItem key={`item-${key}`} index={key} item={item} />
-        )}
+        {items.map((item, key) => <SortableItem key={`item-${key}`} index={key} item={item} />)}
       </ul>
     );
   });

@@ -84,6 +84,9 @@ export default class Todo extends React.Component {
   }
 
   sortItems = ({oldIndex, newIndex}) => {
+    if (oldIndex === newIndex) {
+      return null;
+    }
     this.service
       .reorder(arrayMove(this.state.items, oldIndex, newIndex));
     this.updateList();
