@@ -1,5 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
+// TODO there should be propTypes on this component 
 
 import { 
   SortableContainer, 
@@ -7,10 +8,7 @@ import {
   SortableHandle 
 } from 'react-sortable-hoc';
 
-import { TodoItem } from './item';
-import { TodoAdd } from './add';
-import TodoFilter from './filter';
-import Service from './service';
+import TodoItem from '../item';
 
 import './list.css';
 
@@ -42,7 +40,7 @@ export default function TodoList({
 
   const SortableList = SortableContainer(({items}) => {
     return (
-      <ul className="todo__list-items">
+      <ul className="todo__list">
         {items.map((item, key) =>
           <SortableItem key={`item-${key}`} index={key} item={item} />
         )}

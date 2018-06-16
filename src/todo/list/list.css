@@ -1,16 +1,16 @@
-.todo__list-items {
+.todo__list {
   flex-grow: 1;
   list-style-type: none;
   margin: 0;
   padding-left: 10px;
 }
 
-.todo__list-items li {
+.todo__list li {
   margin-bottom: 1em;
 }
 
 @media (-moz-touch-enabled: 1), (pointer: coarse) {
-  .todo__list-items {
+  .todo__list {
     font-size: 1.1em;
     padding: 4em 1em 3em 1em;
   }

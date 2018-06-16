@@ -1,5 +1,4 @@
 import Todo from './todo';
 
 export default Todo;
-export * from './item';
-export * from './add';
+export { default as TodoItem } from './item';

@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 
 import './item.css';
 
-// TODO should be default export
-export const TodoItem = ({ item, onSelect, onUpdate, onDelete }) => {
+export default function TodoItem({ item, onSelect, onUpdate, onDelete }) {
   const { done, content } = item;
   const className = done ? 'todo__item todo__item--done' : 'todo__item';
 

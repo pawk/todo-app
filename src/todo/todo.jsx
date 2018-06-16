@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { arrayMove } from 'react-sortable-hoc';
 
-import { TodoItem } from './item';
-import { TodoAdd } from './add';
+import TodoAdd from './add';
 import TodoList from './list';
 import TodoFilter from './filter';
 import Service from './service';
@@ -85,14 +84,14 @@ export default class Todo extends React.Component {
   }
 
   sortItems = ({oldIndex, newIndex}) => {
-    const items = this.service
+    this.service
       .reorder(arrayMove(this.state.items, oldIndex, newIndex));
     this.updateState();
   };
 
   render() {
     return (
-      <section className="todo__list">
+      <section className="todo">
         <TodoAdd onAdd={this.addItem}></TodoAdd>
         <TodoList 
           items={this.state.items}
