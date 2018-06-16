@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc';
+import {SortableContainer, SortableElement, SortableHandle, arrayMove} from 'react-sortable-hoc';
 
 import { TodoItem } from './item';
 import { TodoAdd } from './add';
@@ -87,11 +87,12 @@ export default class TodoList extends React.Component {
   onSortEnd = ({oldIndex, newIndex}) => {
     const items = this.service
       .reorder(arrayMove(this.state.items, oldIndex, newIndex));
-      console.log(this.service.items)
     this.updateState();
   };
 
   renderList() {
+    const DragHandle = SortableHandle(() => <div>::</div>);
+
     const SortableItem = SortableElement(({item}) =>
       <li key={item.id}>
         <TodoItem
@@ -101,6 +102,7 @@ export default class TodoList extends React.Component {
           onDelete={this.removeItem(item)}
           onUpdate={this.updateItem(item)}
         >{item.content}</TodoItem>
+        <DragHandle />
       </li>
     );
 
@@ -114,7 +116,13 @@ export default class TodoList extends React.Component {
       );
     });
 
-    return <SortableList items={this.state.items} onSortEnd={this.onSortEnd} />
+    return (
+      <SortableList
+        items={this.state.items}
+        onSortEnd={this.onSortEnd}
+        useDragHandle={true}
+      />
+    );
   }
 
   render() {
