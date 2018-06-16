@@ -1,0 +1,5 @@
+.todo {
+  flex-direction: column;
+  height: 100vh;
+  display: flex;
+}

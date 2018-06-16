@@ -1,5 +1,5 @@
-import List from './list';
+import Todo from './todo';
 
-export default List;
+export default Todo;
 export * from './item';
 export * from './add';

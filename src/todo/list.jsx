@@ -1,7 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {SortableContainer, SortableElement, SortableHandle, arrayMove} from 'react-sortable-hoc';
+import { 
+  SortableContainer, 
+  SortableElement, 
+  SortableHandle 
+} from 'react-sortable-hoc';
 
 import { TodoItem } from './item';
 import { TodoAdd } from './add';
@@ -10,134 +14,47 @@ import Service from './service';
 
 import './list.css';
 
-export default class TodoList extends React.Component {
-  static propTypes = {
-    children: PropTypes.oneOfType([
-      PropTypes.arrayOf(PropTypes.element),
-      PropTypes.element
-    ])
-  }
+export default function TodoList({
+  items,
+  onSelect,
+  onUpdate,
+  onRemove,
+  onSortEnd,
+}) {
+  const selectItem = item => e => onSelect(item);
+  const updateItem = item => content => onUpdate(item, content);
+  const removeItem = item => e => onRemove(item);
 
-  state = {
-    items: null,
-    filter: null
-  }
+  const DragHandle = SortableHandle(() => <div>::</div>);
 
-  constructor(props) {
-    super(props);
-    this.service = new Service();
-  }
+  const SortableItem = SortableElement(({item}) =>
+    <li key={item.id}>
+      <TodoItem
+        key={item.id}
+        item={item}
+        onSelect={selectItem(item)}
+        onUpdate={updateItem(item)}
+        onDelete={removeItem(item)}
+      >{item.content}</TodoItem>
+      <DragHandle />
+    </li>
+  );
 
-  componentWillMount() {
-    let items = this.service.getAll();
-    if (!items.length) {
-      this.service.add(...this.processChildren());
-      items = this.service.getAll();
-    }
-    this.setState({ items });
-  }
-
-  processChildren() {
-    if (!this.props.children) {
-      return null;
-    }
-    return this.props.children.map(child => {
-      const { done, children: content } = child.props;
-      return { done, content };
-    });
-  }
-
-  updateState({ filter, done } = this.state) {
-    const items = this.service.getAll({ filter, done });
-    this.setState({ filter, done, items });
-  }
-
-  selectItem = item => e => {
-    this.service.toggle(item);
-    this.updateState();
-  }
-
-  addItem = item => {
-    this.service.add(item);
-    this.updateState();
-  };
-
-  updateItem = item => content => {
-    let found = this.state.items.find(el => el === item);
-    found.content = content;
-    this.service.update(item, content);
-    this.updateState();
-  }
-
-  removeItem = item => e => {
-    this.service.delete(item);
-    this.updateState();
-  }
-
-  filterItems = filter => {
-    const { done } = this.state;
-    this.updateState({ filter, done });
-  }
-
-  filterWithDone = done => e => {
-    const { filter } = this.state;
-    this.updateState({ filter, done });
-  }
-
-  onSortEnd = ({oldIndex, newIndex}) => {
-    const items = this.service
-      .reorder(arrayMove(this.state.items, oldIndex, newIndex));
-    this.updateState();
-  };
-
-  renderList() {
-    const DragHandle = SortableHandle(() => <div>::</div>);
-
-    const SortableItem = SortableElement(({item}) =>
-      <li key={item.id}>
-        <TodoItem
-          key={item.id}
-          item={item}
-          onSelect={this.selectItem(item)}
-          onDelete={this.removeItem(item)}
-          onUpdate={this.updateItem(item)}
-        >{item.content}</TodoItem>
-        <DragHandle />
-      </li>
-    );
-
-    const SortableList = SortableContainer(({items}) => {
-      return (
-        <ul className="todo__list-items">
-          {this.state.items.map((item, key) =>
-            <SortableItem key={`item-${key}`} index={key} item={item} />
-          )}
-        </ul>
-      );
-    });
-
+  const SortableList = SortableContainer(({items}) => {
     return (
-      <SortableList
-        items={this.state.items}
-        onSortEnd={this.onSortEnd}
-        useDragHandle={true}
-      />
+      <ul className="todo__list-items">
+        {items.map((item, key) =>
+          <SortableItem key={`item-${key}`} index={key} item={item} />
+        )}
+      </ul>
     );
-  }
+  });
 
-  render() {
-    return (
-      <section className="todo__list">
-        <TodoAdd onAdd={this.addItem}></TodoAdd>
-        {this.renderList()}
-        <TodoFilter
-          value={this.state.filter}
-          onFilter={this.filterItems}
-          onAll={this.filterWithDone(null)}
-          onDone={this.filterWithDone(true)}
-          onPending={this.filterWithDone(false)}
-        />
-      </section>
-    );
-  }
+  return (
+    <SortableList
+      items={items}
+      onSortEnd={onSortEnd}
+      useDragHandle={true}
+    />
+  );
 }

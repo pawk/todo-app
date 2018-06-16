@@ -1,9 +1,3 @@
-.todo__list {
-  flex-direction: column;
-  height: 100vh;
-  display: flex;
-}
-
 .todo__list-items {
   flex-grow: 1;
   list-style-type: none;
