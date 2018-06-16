@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import './add.css';
 
+// TODO this should be default export
 export const TodoAdd = ({ onAdd }) => {
   const handleAdd = e => {
     const content = e.target.value;

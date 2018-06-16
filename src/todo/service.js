@@ -46,6 +46,12 @@ export default class TodoService {
     this.save();
   }
 
+  reorder(items) {
+    const ordinal = ordinals(1);
+    this.items = items.reverse().map(item => ({ ...item, order: ordinal() }));
+    this.save();
+  }
+
   load() {
     const stored = window.localStorage ? localStorage.getItem('items') : null;
     let max = 0;

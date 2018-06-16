@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// TODO - break imports 
-import { TodoItem, TodoAdd } from './index';
+import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc';
+
+import { TodoItem } from './item';
+import { TodoAdd } from './add';
 import TodoFilter from './filter';
 import Service from './service';
 
@@ -82,23 +84,44 @@ export default class TodoList extends React.Component {
     this.updateState({ filter, done });
   }
 
+  onSortEnd = ({oldIndex, newIndex}) => {
+    const items = this.service
+      .reorder(arrayMove(this.state.items, oldIndex, newIndex));
+      console.log(this.service.items)
+    this.updateState();
+  };
+
+  renderList() {
+    const SortableItem = SortableElement(({item}) =>
+      <li key={item.id}>
+        <TodoItem
+          key={item.id}
+          item={item}
+          onSelect={this.selectItem(item)}
+          onDelete={this.removeItem(item)}
+          onUpdate={this.updateItem(item)}
+        >{item.content}</TodoItem>
+      </li>
+    );
+
+    const SortableList = SortableContainer(({items}) => {
+      return (
+        <ul className="todo__list-items">
+          {this.state.items.map((item, key) =>
+            <SortableItem key={`item-${key}`} index={key} item={item} />
+          )}
+        </ul>
+      );
+    });
+
+    return <SortableList items={this.state.items} onSortEnd={this.onSortEnd} />
+  }
+
   render() {
     return (
       <section className="todo__list">
         <TodoAdd onAdd={this.addItem}></TodoAdd>
-        <ul className="todo__list-items">
-          {this.state.items.map((item, key) =>
-            <li key={item.id}>
-              <TodoItem
-                key={item.id}
-                item={item}
-                onSelect={this.selectItem(item)}
-                onDelete={this.removeItem(item)}
-                onUpdate={this.updateItem(item)}
-              >{item.content}</TodoItem>
-            </li>
-          )}
-        </ul>
+        {this.renderList()}
         <TodoFilter
           value={this.state.filter}
           onFilter={this.filterItems}
