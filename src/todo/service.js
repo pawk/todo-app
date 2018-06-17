@@ -44,19 +44,18 @@ export default class TodoService {
     this.save();
   }
 
-  wtfReorder(subset, moved, reference, direction) {
+  reorder(movedItem, referenceItem, direction) {
     let items = [...this.items];
 
-    const indexOfMoved = items.findIndex(item => item.id === moved.id);
-    const indexOfReference = items.findIndex(item => item.id === reference.id);
-    let insertIndex = indexOfReference;
+    const indexOfMoved = items.findIndex(item => item.id === movedItem.id);
+    const indexOfReference = items.findIndex(item => item.id === referenceItem.id);
 
     items.splice(indexOfMoved, 1);
 
-    insertIndex = indexOfMoved < indexOfReference ? indexOfReference-1 : indexOfReference;
+    let insertIndex = indexOfMoved < indexOfReference ? indexOfReference-1 : indexOfReference;
     insertIndex = direction < 0 ? insertIndex : insertIndex + 1;
 
-    items.splice(insertIndex, 0, moved);
+    items.splice(insertIndex, 0, movedItem);
 
     this.items = items;
     this.save();

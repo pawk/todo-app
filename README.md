@@ -34,12 +34,11 @@ Minimal dependencies (no css preprocessor, no styled components library etc).
 - If there are no items found in `localStorage`, list will be prepopulated with items passed as children of `TodoList` component - `TodoItem`s elements,
 - Inline edition,
 - Filter items by Done, Pending and custom string
-- manual reordering of items
+- manual reordering of items, also within the filtered subsets
 
 ## Interesting quirks
  - a lot of functional approach,
  - es6/7 all over the place,
- - simple generator used for generation of ordinal numbers,
  - React's Compound Pattern for building the list,
  - a little bit of RWD so it can be conveniently used on handheld devices,
  - nextcss,

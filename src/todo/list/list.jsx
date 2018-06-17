@@ -23,7 +23,7 @@ export default function TodoList({
   const updateItem = item => content => onUpdate(item, content);
   const removeItem = item => e => onRemove(item);
 
-  const DragHandle = SortableHandle(() => <div class="todo__drag-handle">☰</div>);
+  const DragHandle = SortableHandle(() => <div className="todo__drag-handle">☰</div>);
 
   const SortableItem = SortableElement(({item}) =>
     <li key={item.id}>

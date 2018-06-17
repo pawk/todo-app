@@ -82,10 +82,9 @@ export default class Todo extends React.Component {
     this.updateList({ filter, done });
   }
 
-  sortItems = ({oldIndex, newIndex}) => {
-    const diff =  newIndex - oldIndex;
-    this.service
-      .wtfReorder(this.items, this.state.items[oldIndex], this.state.items[newIndex], diff);
+  sortItems = ({ oldIndex, newIndex }) => {
+    const direction =  newIndex - oldIndex;
+    this.service.reorder(this.state.items[oldIndex], this.state.items[newIndex], direction);
     this.updateList();
   };
 
