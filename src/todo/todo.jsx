@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { arrayMove } from 'react-sortable-hoc';
 
 import TodoAdd from './add';
 import TodoList from './list';
@@ -84,11 +83,11 @@ export default class Todo extends React.Component {
   }
 
   sortItems = ({oldIndex, newIndex}) => {
-    if (oldIndex === newIndex) {
-      return null;
-    }
+    const diff =  newIndex - oldIndex;
     this.service
-      .reorder(arrayMove(this.state.items, oldIndex, newIndex));
+      .wtfReorder(this.items, this.state.items[oldIndex], this.state.items[newIndex], diff);
+    this.service.reorder();
+
     this.updateList();
   };
 
