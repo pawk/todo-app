@@ -86,8 +86,6 @@ export default class Todo extends React.Component {
     const diff =  newIndex - oldIndex;
     this.service
       .wtfReorder(this.items, this.state.items[oldIndex], this.state.items[newIndex], diff);
-    this.service.reorder();
-
     this.updateList();
   };
 

@@ -1,5 +1,3 @@
-import ordinals from '../utils/ordinal-numbers';
-
 export default class TodoService {
   items = [];
 
@@ -50,43 +48,26 @@ export default class TodoService {
     let items = [...this.items];
 
     const indexOfMoved = items.findIndex(item => item.id === moved.id);
-    let indexOfReference = items.findIndex(item => item.id === reference.id);
+    const indexOfReference = items.findIndex(item => item.id === reference.id);
+    let insertIndex = indexOfReference;
 
     items.splice(indexOfMoved, 1);
 
-    indexOfReference = indexOfMoved < indexOfReference ? indexOfReference-1 : indexOfReference;
+    insertIndex = indexOfMoved < indexOfReference ? indexOfReference-1 : indexOfReference;
+    insertIndex = direction < 0 ? insertIndex : insertIndex + 1;
 
-    console.log([...items], indexOfMoved, indexOfReference);
-
-    if (direction < 0) {
-      // moving up, over reference
-      items.splice(indexOfReference, 0, moved);
-
-    } else {
-      // moving down, under reference
-      items.splice(indexOfReference + 1, 0, moved);
-    }
-
-    console.log([...items])
+    items.splice(insertIndex, 0, moved);
 
     this.items = items;
-  }
-
-  reorder() {
-    const ordinal = ordinals(1);
-    this.items = this.items.reverse().map(item => ({ ...item, order: ordinal() })).reverse();
     this.save();
   }
 
   load() {
     const stored = window.localStorage ? localStorage.getItem('items') : null;
-    let max = 0;
 
     if (stored) {
       this.items = [...this.items, ...JSON.parse(stored)];
-      max = this.items.reduce((acc, item) => (item.order > acc) ? item.order : acc, 0);
     }
-    this.ordinal = ordinals(++max);
   }
 
   save() {
@@ -96,13 +77,7 @@ export default class TodoService {
   unique = (item) => !this.items
     .find(el => el.content === item.content);
 
-  ordering = (a, b) => {
-    if (a.done === b.done) {
-      return a.order < b.order ? 1 : (a.order > b.order) ? -1 : 0;
-    } else {
-      return a.done - b.done;
-    }
-  }
+  ordering = (a, b) => a.done - b.done;
 
   normalize = elem => {
     if (!elem.hasOwnProperty('done')) {
@@ -110,9 +85,6 @@ export default class TodoService {
     }
     if (!elem.hasOwnProperty('id')) {
       elem.id = elem.content.replace(/[^a-zA-Z0-9]/g, '-');
-    }
-    if (!elem.hasOwnProperty('order')) {
-      elem.order = this.ordinal();
     }
     return elem;
   }
