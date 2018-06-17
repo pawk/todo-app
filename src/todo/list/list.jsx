@@ -43,7 +43,9 @@ export default function TodoList({
   const SortableList = SortableContainer(({items}) => {
     return (
       <ul className="todo__list">
-        {items.map((item, key) => <SortableItem key={`item-${key}`} index={key} item={item} />)}
+        {items.map((item, key) => (
+          <SortableItem key={`item-${key}`} index={key} item={item} disabled={item.done} />
+        ))}
       </ul>
     );
   });
@@ -51,6 +53,7 @@ export default function TodoList({
   return (
     <SortableList
       items={items}
+      lockAxis="y"
       onSortEnd={onSortEnd}
       useDragHandle={true}
     />
