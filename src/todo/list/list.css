@@ -8,15 +8,10 @@ ul, li {
   padding-left: 10px;
 }
 
-.todo__list li {
-  display: block;
-  margin-bottom: 1em;
-}
-
 .todo__list-item {
   align-items: center;
   display: flex;
-  margin-bottom: 0.5em;  
+  margin-bottom: 1em;
 }
 
 @media (-moz-touch-enabled: 1), (pointer: coarse) {
