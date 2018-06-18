@@ -1,3 +1,5 @@
+import stableSort from '../utils/stable-sort';
+
 export default class TodoService {
   items = [];
 
@@ -13,7 +15,7 @@ export default class TodoService {
     if (typeof done === 'boolean') {
       ret = ret.filter(item => item.done === done);
     }
-    return ret.sort(this.ordering);
+    return stableSort(ret, this.ordering);
   }
 
   add(...items) {

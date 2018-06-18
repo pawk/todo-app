@@ -33,7 +33,7 @@ Minimal dependencies (no css preprocessor, no styled components library etc).
 - Items are being stored in browser's `localStorage`,
 - If there are no items found in `localStorage`, list will be prepopulated with items passed as children of `TodoList` component - `TodoItem`s elements,
 - Inline edition,
-- Filter items by Done, Pending and custom string
+- Filter items by Done, Pending and custom string (interestingly, had to add custom stable sort function, as Chrome is messing things up with bigger sets),
 - manual reordering of items, also within the filtered subsets
 
 ## Interesting quirks
