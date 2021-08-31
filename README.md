@@ -18,7 +18,7 @@ npm run build
 npm run deploy
 ```
 
-Project is currently available under [https://pawel-gawel.github.io/todo-app/](https://pawel-gawel.github.io/todo-app/)
+Project is currently available under [https://pawk.github.io/todo-app/](https://pawk.github.io/todo-app/)
 
 ## Technology stack
 
