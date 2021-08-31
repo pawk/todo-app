@@ -2,7 +2,7 @@
 
 # setup vars
 out=${2:-"build/"}
-origin=${1:-"git@github.com:pawel-gawel/todo-app.git"}
+origin=${1:-"git@github.com:pawk/todo-app.git"}
 
 run() {
   pushd $out
